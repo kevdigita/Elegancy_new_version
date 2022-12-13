@@ -23,53 +23,51 @@ class ArticleStoreRequest extends FormRequest
      */
     public function rules()
     {
-        if (request()->isMethod('post')){
-            
-       
+        if (request()->isMethod('post')) {
+
+
             return [
-                "nom"=>"required|string|unique:articles",
-                "prix"=>"required|numeric",
-                "qte"=>"numeric",
-                "media"=>"string",
-                "description"=>"string",
-                "categorie"=>"required",
+                "nom" => "required|string|unique:articles",
+                "prix" => "required|numeric",
+                "qte" => "numeric",
+                "media" => "string",
+                "description" => "string",
+                "categorie" => "required",
 
                 //
-            ]; } 
-            else
-            {
-                return [
-                    "nom"=>"string",
-                    "prix"=>"numeric",
-                    "qte"=>"numeric",
-                    "observation"=>"string|max:255",
-                    "categorie"=>""
-                   
-                    //
-                ]; 
-            }
-        }
-        
-        public function messages()
-        {
-     if (request()->isMethod('post')){
-            
-       
-        return [
-            "nom.required"=>"le champs nom doit etre remplit",
-            "prix.required"=>"le champs prix doit etre remplit",
-            "categorie.required"=>"la categorie n'est pas choisi"
-           //
-        ]; } 
-        else
-        {
+            ];
+        } else {
             return [
-                "nom.required"=>"le champs nom doit etre remplit",
-                "prix.required"=>"le champs prix doit etre remplit",
-                "categorie.required"=>"la categorie n'est pas choisi"
+                "nom" => "string",
+                "prix" => "numeric",
+                "qte" => "numeric",
+                "observation" => "string|max:255",
+                "categorie" => ""
 
-               //
-            ]; 
+                //
+            ];
+        }
+    }
+
+    public function messages()
+    {
+        if (request()->isMethod('post')) {
+
+
+            return [
+                "nom.required" => "le champs nom doit etre remplit",
+                "prix.required" => "le champs prix doit etre remplit",
+                "categorie.required" => "la categorie n'est pas choisi"
+                //
+            ];
+        } else {
+            return [
+                "nom.required" => "le champs nom doit etre remplit",
+                "prix.required" => "le champs prix doit etre remplit",
+                "categorie.required" => "la categorie n'est pas choisi"
+
+                //
+            ];
         }
     }
 }

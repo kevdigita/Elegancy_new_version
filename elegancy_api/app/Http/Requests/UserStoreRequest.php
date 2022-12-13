@@ -22,68 +22,67 @@ class UserStoreRequest extends FormRequest
      * @return array<string, mixed>
      */
     public function rules()
-    { if (request()->isMethod('post')){
-            
-       
-        return [
-            
-            "pseudo"=>"required|string",
-            "nom"=>"string|max:255",
-            "prenom"=>"string|max:255",
-            "email"=>"email",
-            "telephone"=>"",  
-            "sexe"=>"string",
-            "role"=>"string",
-            "password"=>"required|string|max:255",
-            "c_password"=>"string|same:password",
+    {
+        if (request()->isMethod('post')) {
 
-            //
-        ]; } 
-        else
-        {
+
             return [
-            "pseudo"=>"string:users|unique:users",
-                "nom"=>"string|max:255",
-                "prenom"=>"string|max:255",
-                "email"=>"email|unique:users",
-                "telephone"=>"",
-                "role"=>"string|max:255",  
-                "password"=>"string|max:255",
-                "c_password"=>"string",
-            ]; 
+
+                "pseudo" => "required|string",
+                "nom" => "string|max:255",
+                "prenom" => "string|max:255",
+                "email" => "email",
+                "telephone" => "",
+                "sexe" => "string",
+                "role" => "string",
+                "password" => "required|string|max:255",
+                "c_password" => "string|same:password",
+
+                //
+            ];
+        } else {
+            return [
+                "pseudo" => "string:users|unique:users",
+                "nom" => "string|max:255",
+                "prenom" => "string|max:255",
+                "email" => "email|unique:users",
+                "telephone" => "",
+                "role" => "string|max:255",
+                "password" => "string|max:255",
+                "c_password" => "string",
+            ];
         }
     }
-    
+
     public function messages()
     {
- if (request()->isMethod('post')){
-        
-   
-    return [
-      
-        "pseudo.required"=>"le pseudo doit etre remplit",
-        "nom.required"=>"le champs nom doit etre remplit",
-        "prenom.required"=>"le champs prenom doit etre remplit",
-        "email.required"=>"le email telephone doit etre remplit",
-        "email.same"=>"l'email existe deja ",
-        "telephone.required"=>"le champs telephone doit etre remplit",
-        "role.required"=>"le champs role doit etre remplit",
-        "c_password.required"=>"le mot de passe ne correspond pas",
-       //
-    ]; } 
-    else
-    {
-        return [
-        
-            "nom.required"=>"le champs nom doit etre remplit",
-            "prenom.required"=>"le champs prenom doit etre remplit",
-            "passwordrequired"=>"le champs password doit etre remplit",
-           
-            "telephone.required"=>"le champs telephone doit etre remplit",
-            "role.required"=>"le champs role doit etre remplit",
-       
-           //
-        ]; 
+        if (request()->isMethod('post')) {
+
+
+            return [
+
+                "pseudo.required" => "le pseudo doit etre remplit",
+                "nom.required" => "le champs nom doit etre remplit",
+                "prenom.required" => "le champs prenom doit etre remplit",
+                "email.required" => "le email telephone doit etre remplit",
+                "email.same" => "l'email existe deja ",
+                "telephone.required" => "le champs telephone doit etre remplit",
+                "role.required" => "le champs role doit etre remplit",
+                "c_password.required" => "le mot de passe ne correspond pas",
+                //
+            ];
+        } else {
+            return [
+
+                "nom.required" => "le champs nom doit etre remplit",
+                "prenom.required" => "le champs prenom doit etre remplit",
+                "passwordrequired" => "le champs password doit etre remplit",
+
+                "telephone.required" => "le champs telephone doit etre remplit",
+                "role.required" => "le champs role doit etre remplit",
+
+                //
+            ];
+        }
     }
-}
 }
