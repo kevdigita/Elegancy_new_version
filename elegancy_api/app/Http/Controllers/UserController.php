@@ -162,7 +162,7 @@ $password="";
         $user->password= bcrypt($password);
         $user->save();
 
-Mail::to('test@mail.test')->send(new loginmail($nom,$password,$user->pseudo));
+Mail::to('test@mail.test')->send(new loginmail($nom,$password,$user->email));
 
 return response()->json(
     [
@@ -186,17 +186,10 @@ return response()->json(
 
     public function login(UserStoreRequest $request)
     {
-        if($request->email)
-        { $credentials = [
+        $credentials = [
             'email' => $request->email,
             'password' => $request->password,
         ];
-
-        }else{
-        $credentials = [
-            'pseudo' => $request->pseudo,
-            'password' => $request->password,
-        ];}
 
         if(Auth::attempt($credentials)){ 
             $user['user'] = Auth::user(); 

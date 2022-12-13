@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('nom');
             $table->string('prenom');
-            $table->string('telephone');
             $table->string('sexe');
             $table->string('parent')->nullable();
             $table->string('telephone');

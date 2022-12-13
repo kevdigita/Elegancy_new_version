@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Comporter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,10 +14,8 @@ class Article extends Model
         "qte",
         "prix",
         'description',
-        "categorie"
+        "type",
+        'categorie_id'
     ];
-    public function Comporter()
-    {
-        return $this->hasMany(Comporter::class);
-    }
+ 
 }

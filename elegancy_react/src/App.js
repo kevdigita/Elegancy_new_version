@@ -13,7 +13,7 @@ import Apropos from './components/pages/apropos';
 function App() {
   return (
     <div className="App bg-gray-50">
-      <Head/>
+      <Head   />
       <div> 
       <Routes>
         <Route path='/' element={<Home/>}/>

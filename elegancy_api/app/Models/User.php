@@ -6,7 +6,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Models\proces_verbal;
 use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
@@ -52,9 +51,7 @@ class User extends Authenticatable
      public function authAcessToken(){
         return $this->hasMany('\AppModels\OauthAccessToken');
     }
-    public function proces_verbals(){
-        return $this->hasMany(proces_verbal::class);
-    }
+
 
     public function saveUser($request) : self
     {   

@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Commande extends Model
 {
     use HasFactory;
+    Protected $fillable=[
+        'user_id',
+        'article_id',
+        "qte",
+        "montant",
+        'statut'
+    ];
 }

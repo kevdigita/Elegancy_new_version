@@ -24,13 +24,13 @@ function Nouveaute (){
 
     return (<div className=" lg:px-40 mt-40  md:px-10  pb-10">
 <div>
-<img src="Elegency/Ellipse6.svg" alt="" className=" absolute  left-60"></img>
-        <img src="Elegency/new.svg" alt="newpicture1" className=" absolute right-52 top-40"></img>
-        <h1 className="text-8xl font-light relative top-20 left-40 w-1/2  "> DECOUVREZ </h1>
-        <h1 className="text-8xl text-center  font-light  mt-6"><br />NOS</h1>
-        <h1 className="text-8xl text-center font-light  mt-10">NOUVEAUTÉS</h1>
+<img src="Elegency/Ellipse6.svg" alt="" className=" absolute  left-[]"></img>
+        <img src="Elegency/new.svg" alt="newpicture1" className=" absolute right-5 top-40"></img>
+        <h1 className=" text-4xl md:text-8xl font-light relative top-20 left-40 w-1/2  "> DECOUVREZ </h1>
+        <h1 className="text-4xl md:text-8xl text-center relative  font-light  mt-10"><br />NOS</h1>
+        <h1 className="text-4xl md:text-8xl text-center relative font-light  mt-10">NOUVEAUTÉS</h1>
 </div>
-<div className="mt-40 flex ">
+<div className="mt-40 ùd:flex ">
     <img src="Elegency/new2.svg" alt=""></img>
     <div className="m-24 font-light text-xl mr-0">
     <p> Lorem Ipsum is simply dummy text of the printing and

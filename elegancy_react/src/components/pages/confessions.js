@@ -10,7 +10,7 @@ function Confection (){
             <p className="">{items.name}</p>
             <p className="flex  lg:space-x-44 ">
                <span>{items.price} XOF</span> 
-                <button className="border p-1 rounded-lg bg-stone-300"> <img src="Elegency/heart.svg" alt=""></img></button>
+                <button className=" p-1 rounded-lg "> <img src="Elegency/heart.svg" alt=""></img></button>
             </p>
         </div>
         <button className="bg-brun p-2 px-24 rounded text-white text-sm mt-2"> COMMANDER</button>

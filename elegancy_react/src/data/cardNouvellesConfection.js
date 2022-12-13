@@ -1,4 +1,7 @@
-const cardDataConfection = 
+
+
+
+var cardDataConfection = 
 [
     {
         id : 1,

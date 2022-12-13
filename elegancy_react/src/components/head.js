@@ -5,7 +5,7 @@ function Head (){
     const [nav,setNav]=useState(false);
     const menu =()=>{setNav(!nav)}
     return ( 
-        <nav className="flex border justify-between items-center ">
+        <nav className="flex border justify-between items-center  ">
 {/* menu web */}
             <ul className="lg:flex  xl:ml-20 hidden lg:ml-2   ">
                 < CustomLink to="/new" className=" p-2 m-4 flex items-center   "> Nouveautés  </CustomLink>
@@ -26,7 +26,7 @@ function Head (){
                 }
             </button>
             {/* Menu mobile */}
-            <div className="bg-gray-400/50 w-full absolute top-0  left-0">
+            <div className="bg-gray-400/50 w-full absolute top-0  z-50 left-0">
             <ul onClick={menu} className={!nav? "hidden" : " opacity-100 h-screen bg-white pt-20 w-3/4 justify-center items-center"}>
                 < CustomLink to="/new" className=" p-6 m-4   items-center   text-2xl"> Nouveautés  </CustomLink>
                 < CustomLink to="/fabric" className=" p-6  m-4 flex items-center text-2xl "> Tissues  </CustomLink>

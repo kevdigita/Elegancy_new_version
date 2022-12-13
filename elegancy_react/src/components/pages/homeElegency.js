@@ -3,14 +3,14 @@ function Home() {
     return (<div >
             <div className="flex justify-between">
         <div className="pl-40 pt-40">
-            <h1 className=" text-6xl font-medium">
+            <h1 className=" text-2xl font-medium">
                 L'élégance pour <br/>plus de sensations
             </h1>
             <img src="Elegency/zig.svg" alt="" className="break-after mt-8"></img>
-            <img src="Elegency/Vector1.svg" alt="" className=" absolute top-[15%]"></img>
-            <img src="Elegency/Vectorstar.svg" alt="" className="absolute top-[39%] left-[43%]"></img>
+            <img src="Elegency/Vector1.svg" alt="" className=" absolute top-[15%]  left-[25%]"></img>
+            <img src="Elegency/Vectorstar.svg" alt="" className="absolute top-[29%] left-[33%]"></img>
 
-            <button className="bg-brun m-8 rounded-lg px-10 text-white text-lg font-medium p-4"> Voir nos confections </button>
+            <button className="bg-brun m-8 rounded-lg px-10 text-white text-md font-medium p-4"> Voir nos confections </button>
         </div>   
         <div className="">
             <img src="Elegency/Group4.svg" alt="" className="" ></img>

@@ -31,8 +31,9 @@ class UserStoreRequest extends FormRequest
             "nom"=>"string|max:255",
             "prenom"=>"string|max:255",
             "email"=>"email",
-            "telephone"=>"",
-            "role"=>"",
+            "telephone"=>"",  
+            "sexe"=>"string",
+            "role"=>"string",
             "password"=>"required|string|max:255",
             "c_password"=>"string|same:password",
 
