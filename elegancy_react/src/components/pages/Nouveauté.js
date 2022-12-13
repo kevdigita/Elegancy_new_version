@@ -6,9 +6,9 @@ function Nouveaute (){
     const CardTissu = cardDataNewTissu.map((items) => {
         return (
             <div className=" m-4 w-1/4" key={items.id}>
-                <img src={items.img} alt="sam"  className="bg-stone-300" />
+                <img src={items.media} alt="sam"  className="bg-stone-300" />
                 <div className="my-3">
-                    <p className="font-medium">{items.name}</p>
+                    <p className="font-medium">{items.description}</p>
                 </div>
             </div>)
     });
