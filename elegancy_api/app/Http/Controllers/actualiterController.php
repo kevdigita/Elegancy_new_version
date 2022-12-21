@@ -30,22 +30,23 @@ class ActualiterController extends Controller
         $actualites = new Actualiter();
 
         $request->validate([
-            'media' => 'required',
+            'media' => 'required|mimes:png,jpg,gif,svg',
             'type' => 'required',
             'description' => 'required'
         ]);
 
         if($request->hasFile('media')){
-            $filname = $request->file('media')->store('posts', 'public');
-        }else{
+            $filname = $request->file('media')->store('actualites', 'public');
+        /*else{
             $filname = Null;
+        }*/
+
+            $actualites->media = $filname;
+            $actualites->type = $request->type;
+            $actualites->description = $request->description;
+
+            $result = $actualites->save();
         }
-
-        $actualites->media = $filname;
-        $actualites->type = $request->type;
-        $actualites->description = $request->description;
-
-        $result = $actualites->save();
 
         if($result){
             return response()->json(['success' => 'Votre actualité a été enregistré avec succès!']);
@@ -93,6 +94,7 @@ class ActualiterController extends Controller
         $actualites->type = $request->type;
         $actualites->description = $request->description;
         $result = $actualites->save();
+
         if($result){
             return response()->json(['success' => 'Votre actualité a été modifié avec succès!']);
         }else{

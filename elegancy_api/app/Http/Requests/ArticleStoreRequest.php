@@ -24,27 +24,24 @@ class ArticleStoreRequest extends FormRequest
     public function rules()
     {
         if (request()->isMethod('post')) {
-
-
             return [
                 "nom" => "required|string|unique:articles",
                 "prix" => "required|numeric",
-                "qte" => "numeric",
-                "media" => "string",
-                "description" => "string",
+                "qte" => "required|numeric",
+                "media" => "required",
+                "description" => "required|string",
+                "type" => "required",
                 "categorie" => "required",
-
-                //
             ];
         } else {
             return [
-                "nom" => "string",
+                "nom" => "string|unique:articles",
                 "prix" => "numeric",
                 "qte" => "numeric",
-                "observation" => "string|max:255",
-                "categorie" => ""
-
-                //
+                "media" => "string",
+                "description" => "string",
+                "type" => "",
+                "categorie" => "",
             ];
         }
     }
@@ -52,21 +49,16 @@ class ArticleStoreRequest extends FormRequest
     public function messages()
     {
         if (request()->isMethod('post')) {
-
-
             return [
-                "nom.required" => "le champs nom doit etre remplit",
-                "prix.required" => "le champs prix doit etre remplit",
-                "categorie.required" => "la categorie n'est pas choisi"
-                //
+                "nom.required" => "Le champs nom doit etre remplit",
+                "prix.required" => "Le champs prix doit etre remplit",
+                "categorie.required" => "La categorie n'est pas choisi"
             ];
         } else {
             return [
-                "nom.required" => "le champs nom doit etre remplit",
-                "prix.required" => "le champs prix doit etre remplit",
-                "categorie.required" => "la categorie n'est pas choisi"
-
-                //
+                "nom.required" => "Le champs nom doit etre remplit",
+                "prix.required" => "Le champs prix doit etre remplit",
+                "categorie.required" => "La categorie n'est pas choisi"
             ];
         }
     }

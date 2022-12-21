@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nom');
             $table->text('description')->nullable();
             $table->integer('prix');
-            $table->integer('qte')->default(0);
+            $table->integer('qte');
             $table->string('type');
             $table->foreignId('categorie_id')->constrained()->onDelete('cascade');
              $table->timestamps();

@@ -28,11 +28,10 @@ Route::get('user/{id}',[UserController::class,'show']);
 Route::put('user/{id}',[UserController::class,'update']);
 
 //route Article
-Route::post('Article',[ArticleController::class,'store']);
-Route::get('Article',[ArticleController::class,'index']);
-Route::get('Articledef',[ArticleController::class,'inde']);
-Route::get('Article/{id}',[ArticleController::class,'show']);
-Route::put('Article/{id}',[ArticleController::class,'update']);
+Route::get('articles',[ArticleController::class,'index']);
+Route::post('articles/create',[ArticleController::class,'store']);
+Route::get('articles/show/{id}',[ArticleController::class,'show']);
+Route::post('articles/update/{id}',[ArticleController::class,'update']);
 Route::delete('Article/{id}',[ArticleController::class,'destroy']);
 
 //route actualiter

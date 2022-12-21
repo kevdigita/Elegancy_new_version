@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ArticleStoreRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+
 
 class ArticleController extends Controller
 {
@@ -15,17 +17,15 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $Article = Article::orderBy('created_at','desc')->get() ;
+        $Articles = Article::orderBy('created_at','desc')->get() ;
 
         return response()->json(
             [
-                'Article' => $Article,
-                200
+                'articles' => $Articles
             ]
         );
-        //
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -43,43 +43,60 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ArticleStoreRequest $request)
+    public function store(Request $request)
     {
-        $role=Auth()->user()->role;
-        if($role=="Admin"||$role=="Responsable achat")
-        {
-        try {
-            Article::create(
+        $role = Auth()->user()->role;
+
+        if( $role == "Admin" || $role == "Responsable achat" ){
+            $articles = new Article();
+
+            $request->validate([
+                "nom" => "required|string|unique:articles",
+                "prix" => "required|numeric",
+                "qte" => "required|numeric",
+                "media" => "required|mimes:png,jpg,gif,svg",
+                "description" => "required|string",
+                "type" => "required",
+                "categorie" => "required",
+            ]);
+
+            if($request->hasFile('media')){
+                $filname = $request->file('media')->store('articles', 'public');
+
+                $articles->nom = $request->nom;
+                $articles->prix = $request->prix;
+                $articles->qte = $request->qte;
+                $articles->media = $filname;
+                $articles->description = $request->description;
+                $articles->type = $request->type;
+                $articles->categorie_id = $request->categorie;
+
+                $result = $articles->save();
+            }
+                if($result){
+                    return response()->json(
+                        [
+                            'success' => 'Votre article a été enregistré avec succès!',
+                            'status' => 200
+                        ]
+                    );
+                }else{
+                    return response()->json(
+                        [
+                            'success' => 'Une erreur est survenu lors de l\'enregistrement de votre article!',
+                            'status' => 400
+                        ]
+                    );
+                }
+
+        }else{
+            return response()->json(
                 [
-                    'nom' => $request->nom,
-                    'prix' => $request->prix,
-                 
-                    'observation' => $request->observation,
-                    'categorie' => $request->categorie,
+                    'success' => 'Vous n\'etes pas autoriser à ajouter un article!',
+                    'status' => 400
                 ]
             );
-            return response()->json(
-                [
-                    'message' => 'Enregistrer'
-                ],
-                200
-            );
-        } catch (\Exception $e) {
-            return response()->json(
-                [
-                    'message' => 'Enregistrement echouer'
-                ],
-                500
-            );
         }
-    }else{ return response()->json(
-        [
-            'message' => 'Permission non Accorder'
-        ],
-        500
-    );}
-
-        //
     }
 
     /**
@@ -88,24 +105,15 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-        $Article = Article::find($id);
-        if (!$Article) {
-            return response()->json(
-                [
-                    'message' => 'Article non trouver'
-                ],
-                404
-            );
+    public function show($id){
+
+        $article = Article::find($id);
+
+        if (!$article) {
+            return response()->json(['success' => 'Article non trouvé!']);
+        }else{
+            return response()->json(['article' => $article]);
         }
-        return response()->json(
-            [
-                'Article' => $Article
-            ],
-            200
-        );
     }
 
     /**
@@ -126,60 +134,58 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ArticleStoreRequest $request, $id)
-    {  $role=Auth()->user()->role;
-        if($role=="Admin"||$role=="Responsable achat")
-        {
-        try {
+    public function update(Request $request, $id){
 
-            $Article = Article::find($id);
-            if (!$Article) {
+        $role = Auth()->user()->role;
+
+        if($role == "Admin" || $role == "Responsable achat"){
+
+            $article = Article::find($id);
+            if ($article != NULL) {
+                $destination = public_path("storage\\".$article->media);
+                if($request->hasFile('new_file')){
+                    if(File::exists($destination)){
+                        File::delete($destination);
+                    }
+                    $filname = $request->file('new_file')->store('articles', 'public');
+                }else{
+                    $filname = $request->media;
+                }
+
+                $article->nom = $request->nom;
+                $article->prix = $request->prix;
+                $article->qte = $request->qte;
+                $article->media = $filname;
+                $article->description = $request->description;
+                $article->type = $request->type;
+                $article->categorie_id = $request->categorie;
+
+                $result = $article->save();
+
+                if($result){
+                    return response()->json(
+                        [
+                            'success' => 'Votre article a été modifié avec succès!',
+                            'status' => 200
+                        ]
+                    );
+                }else{
+                    return response()->json(
+                        [
+                            'success' => 'Une erreur est survenu lors de l\'enregistrement de votre article!',
+                            'status' => 400
+                        ]
+                    );
+                }
+            }else{
                 return response()->json(
                     [
-                        'message' => 'Article non trouver'
-                    ],
-                    404
+                        'success' => 'Cet article n\'existe pas !',
+                        'status' => 400
+                    ]
                 );
             }
-            if ($request->nom) {
-
-                $Article->nom = $request->nom;
-            }
-
-            if ($request->prix) {
-                $Article->prix = $request->prix;
-            } if ($request->qte) {
-                $Article->qte = $request->qte;
-            }
-
-            if ($request->observation) {
-                $Article->observation = $request->observation;
-            }
-            if ($request->categorie_id) {
-                $Article->categorie_id = $request->categorie_id;
-            }
-            $Article->save();
-            return response()->json(
-                [
-                    'message' => 'Update avec succès'
-                ],
-                200
-            );
-        } catch (\Exception $e) {
-            return response()->json(
-                [
-                    'message' => 'Something went really wrong'
-                ],
-                500
-            );
-        }}else{ return response()->json(
-            [
-                'message' => 'Permission non Accorder'
-            ],
-            500
-        );}
-    
-        //
+        }
     }
 
     /**
