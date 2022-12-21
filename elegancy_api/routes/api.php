@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActualiterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\categorieController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -27,7 +28,7 @@ Route::get('user',[UserController::class,'index']);
 Route::get('user/{id}',[UserController::class,'show']);
 Route::put('user/{id}',[UserController::class,'update']);
 
-//route Article
+//route article
 Route::get('articles',[ArticleController::class,'index']);
 Route::post('articles/create',[ArticleController::class,'store']);
 Route::get('articles/show/{id}',[ArticleController::class,'show']);
@@ -36,8 +37,15 @@ Route::delete('Article/{id}',[ArticleController::class,'destroy']);
 
 //route actualiter
 Route::get('/actualites', [ActualiterController::class, 'index']);
-Route::post('/create', [ActualiterController::class, 'store']);
-Route::patch('/edit/{id}', [ActualiterController::class, 'show']);
-Route::post('/update/{id}', [ActualiterController::class, 'update']);
-Route::delete('/delete/{id}', [ActualiterController::class, 'destroy']);
+Route::post('/actualite/create', [ActualiterController::class, 'store']);
+Route::get('/actualite/show/{id}', [ActualiterController::class, 'show']);
+Route::post('/actualite/update/{id}', [ActualiterController::class, 'update']);
+Route::delete('/actualite/delete/{id}', [ActualiterController::class, 'destroy']);
+
+//route categorie
+Route::get('/categories', [categorieController::class, 'index']);
+Route::post('/categorie/create', [categorieController::class, 'store']);
+Route::get('/categorie/show/{id}', [categorieController::class, 'show']);
+Route::post('/categorie/update/{id}', [categorieController::class, 'update']);
+Route::delete('/categorie/delete/{id}', [categorieController::class, 'destroy']);
 
