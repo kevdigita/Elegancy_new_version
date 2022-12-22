@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     use HasFactory;
-    Protected $fillable=[
+    protected $fillable=[
         'nom',
         'media',
         "qte",
@@ -17,5 +17,5 @@ class Article extends Model
         "type",
         'categorie_id'
     ];
- 
+
 }
