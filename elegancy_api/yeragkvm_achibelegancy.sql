@@ -278,7 +278,19 @@ CREATE TABLE `users` (
   `time` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
+
+('dalmeidakevin910@gmail.com', '+22990553557', '093b1c24ba0b404e96d2240b00128f42.jpg', 'Almeida', 'Kevin', 'M', 'Cotonou', 'non valider', '', 'f59b7efafd800e27b47a488d30615c73', 'non', 0, '2022-01-06 17:32:38'),
+('josuebans97@gmail.com', '+22951574454', 'hommelogoutilisateur.jpg', 'Bansenga', 'Josue ', 'M', 'Agla', 'non valider', '', 'ebbb3c8581a4447540a549e76cb74857', 'non', 0, '2022-01-06 17:45:17'),
+('akpmariedavid@gmail.com', '+22998492407', 'Screenshot_20210502_142819.jpg', 'AKONON ', 'Marie-David ', 'F', 'Cotonou ', 'non valider', '', 'aa772d9acbb263f264542c5429dfe787', 'non', 0, '2022-01-04 18:52:10'),
+('juniaspacha01@gmail.com', '+22990575509', 'hommelogoutilisateur.jpg', 'Almeida', 'Junias ', 'M', 'Cotonou ', 'non valider',  '', 'cae8715942669d534b86dd4f93e83a2d', 'non', 0, '2022-01-04 16:23:43'),
+('mariellebioyara@gmail.com', '+22996513196', 'femmelogoutilisateur.jpg', 'Bio yara', 'Marielle ', 'F', 'Cotonou ', 'non valider',  '', '709068e7f87ea0d7a8f46f1c6dee500b', 'non', 0, '2022-01-07 21:08:51'),
+('mauriciozannou@gmail.com', '+22997931242', 'hommelogoutilisateur.jpg', 'ZANNOU', 'Mauricio', 'M', 'Porto-Novo', 'non valider',  '', '583ab19ffa41df8868077d12fb82ea86', 'non', 0, '2022-01-04 15:05:22'),
+('monespoirfabricadidehou@gmail.com', '+22997700704', 'hommelogoutilisateur.jpg', 'ADIDEHOU', 'Monespoir Fabrice', 'M', 'Cotonou', 'non valider',  '', 'be2fd74800adf08afadfea1ab837222a', 'non', 0, '2022-01-04 11:17:08'),
+
+
+
+
+
 -- Déchargement des données de la table `users`
 --
 

@@ -33,10 +33,12 @@ class categorieController extends Controller
             $categories = new Categorie();
 
             $request->validate([
-                'nom' => 'required'
+                'nom' => 'required',
+                'type' => 'required'
             ]);
 
             $categories->nom = $request->nom;
+            $categories->type = $request->type;
             $result = $categories->save();
 
             if($result){
@@ -80,7 +82,7 @@ class categorieController extends Controller
                 return response()->json(['success' => 'Cette catégorie existe déja en base de données!']);
             }
             $categories->nom = $request->nom;
-
+            $categories->type = $request->type;
             $result = $categories->save();
 
             if($result){
