@@ -37,7 +37,7 @@ Route::delete('Article/{id}',[ArticleController::class,'destroy']);
 
 //route actualiter
 Route::get('/actualites', [ActualiterController::class, 'index']);
-Route::post('/create', [ActualiterController::class, 'store']);
+Route::post('create', [ActualiterController::class, 'store']);
 Route::patch('/edit/{id}', [ActualiterController::class, 'show']);
 Route::post('/update/{id}', [ActualiterController::class, 'update']);
 Route::delete('/delete/{id}', [ActualiterController::class, 'destroy']);

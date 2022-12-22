@@ -9,7 +9,6 @@ import Confection from './components/pages/confessions';
 import Apropos from './components/pages/apropos';
 
 
-
 function App() {
   return (
     <div className="App bg-gray-50">

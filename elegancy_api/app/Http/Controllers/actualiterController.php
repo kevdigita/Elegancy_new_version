@@ -30,22 +30,22 @@ class ActualiterController extends Controller
         $actualites = new Actualiter();
 
         $request->validate([
-            'media' => 'required',
+            'media' => 'required|mimes:jpg,png,jpeg,gif,svg',
             'type' => 'required',
             'description' => 'required'
         ]);
 
         if($request->hasFile('media')){
-            $filname = $request->file('media')->store('posts', 'public');
-        }else{
-            $filname = Null;
-        }
 
-        $actualites->media = $filname;
+            $filname = $request->file('media')->store('img/actu', 'public');
+
+         $actualites->media = $filname;
         $actualites->type = $request->type;
         $actualites->description = $request->description;
 
         $result = $actualites->save();
+    }
+       
 
         if($result){
             return response()->json(['success' => 'Votre actualité a été enregistré avec succès!']);
@@ -84,7 +84,7 @@ class ActualiterController extends Controller
                 File::delete($destination);
             }
 
-            $filname = $request->file('new_file')->store('posts', 'public');
+            $filname = $request->file('new_file')->store('img/actu', 'public');
         }else{
             $filname = $request->media;
         }
