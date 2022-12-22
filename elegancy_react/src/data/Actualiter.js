@@ -1,13 +1,13 @@
 import React from 'react';
 import axios from 'axios';
-
+import { Pagination } from './Pagination';
 
 export default class actualiterList extends React.Component {
   state = {
     actualiter: [],  
     currentPage: 0,
     count: 0,
-    offset: 10
+    offset: 5
   }
   componentDidMount() {
     axios.get('http://127.0.0.1:8000/api/actualites')
@@ -34,71 +34,32 @@ export default class actualiterList extends React.Component {
 
         return ( 
             <div>
-                {actualiter.length && actualiter.slice(start, end).map((item, i) =>{
-                <div className="mt-40 md:flex bg-slate-100 text-center" key={i}>
-                    {`${item.type}`== 'photo' &&
-                        <img width="400" src={"http://127.0.0.1:8000/" + `${item.media}`} alt=""></img>}
+               
+        {actualiter.length && actualiter.slice(start,end).map(item =>
+             <div className="mt-40 md:flex bg-slate-100 text-center" key={item.id}>
+                    {item.type == 'photo' &&
+                        <img width="400" src={"http://127.0.0.1:8000/" + item.media} alt=""></img>}
                     {item.type == 'video' &&
-                        <video width="400" controls>
-                            <source src={"http://127.0.0.1:8000/" + `${item.media}`} type="video/mp4" />
-                            <source src={"http://127.0.0.1:8000/" + `${item.media}`} type="video/ogg" />
+                        <video width="200" controls >
+                            <source src={"http://127.0.0.1:8000/" + item.media} type="video/mp4" />
+                            <source src={"http://127.0.0.1:8000/" + item.media} type="video/ogg" />
                             Your browser does not support HTML video.
                         </video>}
                     <div className="m-10 font-light   text-2xl ">
-                        <p> { `${item.description}`} </p>
+                        <p> {item.description} </p>
                     </div>
-                </div> })}
-            <Pagination
-                    pages={Math.ceil(count / offset)}
-                    current={currentPage}
-                    onChangePage={this.changePage}
-                    margin={5} /> </div>
+                </div> )}
+                <Pagination
+                pages={Math.ceil(count / offset)}
+                current={currentPage}
+                onChangePage={this.changePage}
+                margin={4}
+              /></div>
     )
                
   }
 }
 
-  class Pagination extends React.Component {
-    onChangePage = e => {
-      const id = e.target.dataset.page;
-      this.props.onChangePage(id);
-    };
-    render() {
-      const { pages, current,margin } = this.props;
-      let a = [];
-      for (let i = 0; i < pages; i++) {
-        a.push(
-          <li
-            data-page={i}
-            onClick={this.onChangePage}
-            key={i}
-            className={"item" + (i == current ? " active" : "")}
-          >
-            {i}
-          </li>
-        );
-      }
-      a.unshift(<li
-            data-page='back'
-            onClick={this.onChangePage}
-            key={9090}
-            className={"item"}
-          >-
-            
-          </li>);
-      a.push(<li
-            data-page='front'
-            onClick={this.onChangePage}
-            key={90190}
-            className={"item"}
-          >+
-            
-          </li>)
-      
-      return <ul className="pagi">{a}</ul>;
-    }
-  }
-  
 /*[
     {
         id : 1,

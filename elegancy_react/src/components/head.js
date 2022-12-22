@@ -37,7 +37,7 @@ function Head (){
             {/* button du home Elegency */}
             <Link to="/" className=" text-xl p-1 flex items-center ">
                 <img src="Elegency/Vector.svg" alt=""></img>
-                <span className="mx-2 font-semibold">  ELEGENCY </span>
+                <span className="mx-2 font-semibold">  ELEGANCY </span>
                 <img src="Elegency/Vector.svg" alt=""></img>
             </Link>
             {/* button de recherche favorie et panier  */}
