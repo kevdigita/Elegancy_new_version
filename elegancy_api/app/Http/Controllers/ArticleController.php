@@ -17,11 +17,11 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $Articles = Article::orderBy('created_at','desc')->get() ;
+        $articles = Article::orderBy('created_at','desc')->get() ;
 
         return response()->json(
             [
-                'articles' => $Articles
+                'articles' => $articles
             ]
         );
     }
