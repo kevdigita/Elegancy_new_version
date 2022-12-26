@@ -2,14 +2,14 @@ const cardDataNewTissu =
         
 
 
-    fetch('http://127.0.0.1:8000/api/actualites')
+    /*fetch('http://127.0.0.1:8000/api/actualites')
             .then((response) => {
                 return response.json()
             }).then((result) => {
                 console.log(result)
-            })
+            })*/
     
-/*[
+[
     {
         id : 1,
         img :"Elegency/new3.svg",
@@ -34,7 +34,7 @@ const cardDataNewTissu =
     },
     
 
-]*/
+]
 
 export default cardDataNewTissu
 
