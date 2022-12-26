@@ -1,8 +1,13 @@
 import React from "react";
-import cardDataNewTissu from "../../data/cardNouveauTissu";
-import cardDataConfection from "../../data/cardNouvellesConfection";
+import CardDataNewTissu from "../../data/cardNouveauTissu.js";
+import cardDataConfection from "../../data/cardNouvellesConfection.js";
+
+import Actualiter from "../../data/Actualiter.js";
+
+import ReactPaginate from 'react-paginate';
 
 function Nouveaute (){
+<<<<<<< HEAD
     const CardTissu = cardDataNewTissu.map((items) => {
         return (
             <div className=" m-4 w-1/4" key={items.id}>
@@ -12,6 +17,9 @@ function Nouveaute (){
                 </div>
             </div>)
     });
+=======
+ 
+>>>>>>> 791144b124b8f831493af9b1d23ddd776ceceda3
     const CardConfection = cardDataConfection.map((items) => {
         return (
             <div className=" w-1/4 m-4" key={items.id}>
@@ -30,28 +38,18 @@ function Nouveaute (){
         <h1 className="text-4xl md:text-8xl text-center relative  font-light  mt-10"><br />NOS</h1>
         <h1 className="text-4xl md:text-8xl text-center relative font-light  mt-10">NOUVEAUTÉS</h1>
 </div>
-<div className="mt-40 ùd:flex ">
-    <img src="Elegency/new2.svg" alt=""></img>
-    <div className="m-24 font-light text-xl mr-0">
-    <p> Lorem Ipsum is simply dummy text of the printing and
-typesetting industry. Lorem Ipsum has been the industry's
-standard dummy text ever since the 1500s, when an
-unknown printer took a galley of type and scrambled it to
-make a type specimen book. It has survived not only five
-centuries,</p>
-    </div>
-    </div>
 
+<Actualiter />
 <div className="mt-20">
-
+       
 <section className="mt-10">
 <button className="my-4">
         NOUVEAUX TISSUS  
     </button>
-    <div className="flex   ">
-    {CardTissu}
-    </div>
-</section>
+    <div className="flex">
+<CardDataNewTissu />
+</div>
+</section>   
 
 <section  className="mt-10">
     <button className="my-4">

@@ -18,7 +18,10 @@ return new class extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('sexe');
-            $table->string('parent')->nullable();
+            $table->string('ville');
+            $table->string('role')->default('client');
+            $table->string('valide')->default('non valide');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade')->nullable();
             $table->string('telephone');
             $table->string('epargneur')->default('non');
             $table->string('solde')->default(0);
