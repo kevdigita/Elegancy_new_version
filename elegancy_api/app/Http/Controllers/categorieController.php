@@ -17,7 +17,18 @@ class categorieController extends Controller
         $categories = Categorie::orderBy('id', 'DESC')->get();
         return response()->json($categories);
     }
+    public function getcat($type){
+    
+        $categories = Categorie::select('*')
+            ->where('type','=',$type)
+            ->get();
 
+            return response()->json(
+                [
+                    'categories' => $categories
+                ]
+            );
+    }
     /**
      * Store a newly created resource in storage.
      *

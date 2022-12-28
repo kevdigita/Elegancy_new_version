@@ -5,20 +5,20 @@ function Footer (){
     return (<footer className="bg-neutral-800 text-white p-10 w-full">
         <div className="md:flex justify-between  md:mx-40 ">
         <div className="md:w-1/4 mt-2">
-            <h1 className=" text-md ">ELEGENCY</h1>
+            <h1 className=" text-md "><Link to="/" >ELEGANCY</Link> </h1>
             <p className="text-zinc-300 text-sm">
             Nous sommes une association de couturiers béninois dévoués à procurer au client une satisfaction totale
             </p>
             <div className="flex my-2  space-x-4">
-                <img src="Elegency/facebook.svg" alt=""></img>
-                <img src="Elegency/instagram.svg" alt=""></img>
-                <img src="Elegency/linkedin.svg" alt=""></img>
-                <img src="Elegency/twitter.svg" alt=""></img>
+                <img src="elegancy/facebook.svg" alt=""></img>
+                <img src="elegancy/instagram.svg" alt=""></img>
+                <img src="elegancy/linkedin.svg" alt=""></img>
+                <img src="elegancy/twitter.svg" alt=""></img>
             </div>
         </div>
         <div className="md:w-1/4 mt-2">
         <h1 className="">Societé</h1>
-        <p className="text-zinc-300 text-sm">A propos de nous </p>
+        <p className="text-zinc-300 text-sm"> <Link to="/about" >A propos de nous</Link> </p>
         </div>
         <div className="md:w-1/3 mt-2">
         <h1 className="">Nous contacter</h1>

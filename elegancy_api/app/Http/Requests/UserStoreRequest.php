@@ -28,13 +28,14 @@ class UserStoreRequest extends FormRequest
 
             return [
 
-                "pseudo" => "required|string",
+                "photo" => "string",
                 "nom" => "string|max:255",
                 "prenom" => "string|max:255",
                 "email" => "email",
                 "telephone" => "",
                 "sexe" => "string",
-                "role" => "string",
+                "role" => "string", 
+                "parent" => "exists:users,id",
                 "password" => "required|string|max:255",
                 "c_password" => "string|same:password",
 
@@ -42,7 +43,10 @@ class UserStoreRequest extends FormRequest
             ];
         } else {
             return [
-                "pseudo" => "string:users|unique:users",
+                "photo" => "string",
+                "parent" => "exists:users,id",
+                "valide" => "string",
+                "ville" => "string",
                 "nom" => "string|max:255",
                 "prenom" => "string|max:255",
                 "email" => "email|unique:users",
@@ -62,6 +66,7 @@ class UserStoreRequest extends FormRequest
             return [
 
                 "pseudo.required" => "le pseudo doit etre remplit",
+                "ville" => "string",
                 "nom.required" => "le champs nom doit etre remplit",
                 "prenom.required" => "le champs prenom doit etre remplit",
                 "email.required" => "le email telephone doit etre remplit",

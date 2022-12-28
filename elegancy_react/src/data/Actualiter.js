@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { Pagination } from './Pagination';
+import { Apiroot } from '..';
+import { Link } from 'react-router-dom';
 
 export default class actualiterList extends React.Component {
   state = {
@@ -10,7 +12,7 @@ export default class actualiterList extends React.Component {
     offset: 5
   }
   componentDidMount() {
-    axios.get('http://127.0.0.1:8000/api/actualites')
+    axios.get(Apiroot._currentValue+'actualites')
       .then(res => {
         console.log(res)
         this.setState({
@@ -36,19 +38,20 @@ export default class actualiterList extends React.Component {
             <div>
                
         {actualiter.length && actualiter.slice(start,end).map(item =>
-             <div className="mt-40 md:flex bg-slate-100 text-center" key={item.id}>
+             <div className="mt-40 md:flex  text-center  " key={item.id}>
                     {item.type == 'photo' &&
                         <img width="400" src={"http://127.0.0.1:8000/" + item.media} alt=""></img>}
                     {item.type == 'video' &&
-                        <video width="200" controls >
+                        <video width="300" controls >
                             <source src={"http://127.0.0.1:8000/" + item.media} type="video/mp4" />
                             <source src={"http://127.0.0.1:8000/" + item.media} type="video/ogg" />
                             Your browser does not support HTML video.
                         </video>}
-                    <div className="m-10 font-light   text-2xl ">
-                        <p> {item.description} </p>
+                    <div >
+                        <p className="m-10 font-p   text-2xl "> {item.description} </p> <Link to={'vplus/'+item.description} className="bg-brun p-3 my-auto mx-20 px-20 rounded text-white text-sm mt-2">Lire l'article</Link>
+              
                     </div>
-                </div> )}
+                     </div> )}
                 <Pagination
                 pages={Math.ceil(count / offset)}
                 current={currentPage}
@@ -59,33 +62,3 @@ export default class actualiterList extends React.Component {
                
   }
 }
-
-/*[
-    {
-        id : 1,
-        img :"Elegency/new3.svg",
-        name:"Tissus WAX",
-    },
-
-    {
-        id : 2,
-        img :" Elegency/new4.svg",
-        name:"TIssus Occidental",
-    },
-    
-    {
-        id : 3,
-        img :"Elegency/new3.svg",
-        name:"Tissus Wax",
-    },
-    {
-        id : 4,
-        img :"Elegency/new4.svg",
-        name:"Tissus Occidental",
-    },
-    
-
-]*/
-
-
-

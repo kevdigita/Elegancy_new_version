@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ArticleStoreRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 
@@ -47,7 +48,7 @@ class ArticleController extends Controller
     {
         $role = Auth()->user()->role;
 
-        if( $role == "Admin" || $role == "Responsable achat" ){
+        if( $role == "Admin"  ){
             $articles = new Article();
 
             $request->validate([
@@ -61,7 +62,7 @@ class ArticleController extends Controller
             ]);
 
             if($request->hasFile('media')){
-                $filname = $request->file('media')->store('articles', 'public');
+                $filname = $request->file('media')->store('img/article', 'public');
 
                 $articles->nom = $request->nom;
                 $articles->prix = $request->prix;
@@ -127,6 +128,21 @@ class ArticleController extends Controller
         //
     }
 
+    public function getarticle($type){
+        $articles = DB::table('articles')
+            ->join('categories', 'categories.id', '=', 'articles.categorie_id')
+            ->select('articles.*')
+            ->where('categories.type', '=', $type)
+            ->orderBy('created_at','desc')
+            ->get();
+
+            return response()->json(
+                [
+                    'articles' => $articles
+                ]
+            );
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -138,7 +154,7 @@ class ArticleController extends Controller
 
         $role = Auth()->user()->role;
 
-        if($role == "Admin" || $role == "Responsable achat"){
+        if($role == "Admin" ){
 
             $article = Article::find($id);
             if ($article != NULL) {
@@ -147,7 +163,7 @@ class ArticleController extends Controller
                     if(File::exists($destination)){
                         File::delete($destination);
                     }
-                    $filname = $request->file('new_file')->store('articles', 'public');
+                    $filname = $request->file('new_file')->store('img/article', 'public');
                 }else{
                     $filname = $request->media;
                 }
@@ -155,7 +171,7 @@ class ArticleController extends Controller
                 $article->nom = $request->nom;
                 $article->prix = $request->prix;
                 $article->qte = $request->qte;
-                $article->media = $filname;
+                 
                 $article->description = $request->description;
                 $article->type = $request->type;
                 $article->categorie_id = $request->categorie;
@@ -196,7 +212,7 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {$role=Auth()->user()->role;
-        if($role=="Admin"||$role=="Responsable achat")
+        if($role=="Admin")
         {
         $Article = Article::find($id);
         if (!$Article) {

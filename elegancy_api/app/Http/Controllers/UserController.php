@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\File;
 use App\Http\Requests\UserStoreRequest;
 use App\Models\User;
 use App\Helper\HasApiResponse;
@@ -64,9 +65,23 @@ class UserController extends Controller
                         404
                     );
                 }
-                if ($request->pseudo) {
+              
+                    $destination = public_path("storage\\".$user->photo);
+                    if($request->hasFile('new_file')){
+                        if(File::exists($destination)){
+                            File::delete($destination);
+                        }
+                        $filname = $request->file('new_file')->store('img/users', 'public');
+                    }else{
+                        $filname = $request->photo;
+                    }
+                $request->photo = $filname;
+                if ($request->ville) {
 
-                    $user->pseudo = $request->pseudo;
+                    $user->ville = $request->ville;
+                }   if ($request->valide) {
+
+                    $user->valide = $request->valide;
                 }
                 if ($request->nom) {
 
@@ -166,6 +181,16 @@ class UserController extends Controller
     public function register(UserStoreRequest $request, User $user)
     {
         $user = $user->saveUser($request);
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+
+        if (Auth::attempt($credentials)) {
+            $user['user'] = Auth::user();
+            $user['token'] = Auth::user()->createToken('myApp')->accessToken;
+
+        }
         $response = [
             'success' => true,
             'data'    => $user,

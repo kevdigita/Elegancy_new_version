@@ -31,6 +31,7 @@ Route::get('user/{id}',[UserController::class,'show']);
 Route::put('user/{id}',[UserController::class,'update']);
 
 //route article
+Route::get('articlecat/{type}',[ArticleController::class,'getarticle']);
 Route::get('articles',[ArticleController::class,'index']);
 Route::post('articles/create',[ArticleController::class,'store']);
 Route::get('articles/show/{id}',[ArticleController::class,'show']);
@@ -45,6 +46,7 @@ Route::post('/actualite/update/{id}', [ActualiterController::class, 'update']);
 Route::delete('/actualite/delete/{id}', [ActualiterController::class, 'destroy']);
 
 //route categorie
+Route::get('cat/{type}',[categorieController::class,'getcat']);
 Route::get('/categories', [categorieController::class, 'index']);
 Route::post('/categorie/create', [categorieController::class, 'store']);
 Route::get('/categorie/show/{id}', [categorieController::class, 'show']);

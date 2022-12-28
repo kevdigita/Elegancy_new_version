@@ -19,7 +19,7 @@ function Apropos (){
     return (<div className=" lg:px-40 pt-28 px-20 md:px-10  pb-10">
             
             <div className=" absolute top-28  left-28">
-                <img src="Elegency/Ellipse6.svg" alt=""></img>
+                <img src="elegancy/Ellipse6.svg" alt=""></img>
             </div>
             <div className="relative top-4  ">
             <h1 className="text-5xl text-semibold  "> Rencontrez notre grande<br/>

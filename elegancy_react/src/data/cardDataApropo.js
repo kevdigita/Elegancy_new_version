@@ -2,40 +2,40 @@ const cardData =
 [
     {
         id : 1,
-        img :"Elegency/honorat.svg",
+        img :"elegancy/honorat.svg",
         name:"Honorat d'Almeida",
         role:"CEO et Fondateur",
     },
 
     {
         id : 2,
-        img :" Elegency/hugette.svg",
+        img :" elegancy/hugette.svg",
         name:"Hugette Tognide",
         role:"Directrice generale",
     },
     
     {
         id : 3,
-        img :"Elegency/kevin.svg",
+        img :"elegancy/kevin.svg",
         name:"Kevin d'Almeida",
         role:"Responsable Informatique",
     },
     {
         id : 4,
-        img :"Elegency/otenia.svg",
+        img :"elegancy/otenia.svg",
         name:"Juliana Otenia",
         role:"UI/UX Designer",
     },
     {
         id : 5,
-        img :" Elegency/sam.svg",
+        img :" elegancy/sam.svg",
         name:"Samuel Senouvo",
         role:"Web developer",
     },
     
     {
         id : 6,
-        img :"Elegency/junior.svg",
+        img :"elegancy/junior.svg",
         name:"Kanzou-Llohi Bankole",
         role:"Mobile developer",
     },

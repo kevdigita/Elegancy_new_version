@@ -24,6 +24,9 @@ class User extends Authenticatable
 "email",
 "telephone",
         'role',
+        'photo',
+        'valide',
+        'ville',
         'sexe',
         'parent',
         'epargneur',
@@ -60,12 +63,25 @@ class User extends Authenticatable
         $this->role = $request->role;
         
         $this->telephone = $request->telephone;
-        
+
+        if($request->hasFile('photo')){ 
+  
+            $filname = $request->file('photo')->store('img/users', 'public'); 
+         } 
+        else
+        {
+            $filname = $request->photo;
+        }
+        $this->ville = $request->ville;
+        $this->photo = $filname;
         $this->prenom = $request->prenom;
-        
-        $this->pseudo = $request->pseudo;
+        $this->role = 'Client';
+
+        $this->sexe = $request->sexe;
         $this->email = $request->email;
         $this->password = bcrypt($request->password);
+        
+
         $this->save();
 
         return $this;
