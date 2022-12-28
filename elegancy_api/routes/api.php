@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\ActualiterController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\categorieController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\commandeController;
+use App\Http\Controllers\categorieController;
+use App\Http\Controllers\ActualiterController;
+use App\Http\Controllers\commentaireController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,4 +54,17 @@ Route::post('/categorie/create', [categorieController::class, 'store']);
 Route::get('/categorie/show/{id}', [categorieController::class, 'show']);
 Route::post('/categorie/update/{id}', [categorieController::class, 'update']);
 Route::delete('/categorie/delete/{id}', [categorieController::class, 'destroy']);
+
+//route commentaire
+Route::get('commentaires/{id}', [commentaireController::class, 'index']);
+Route::post('/commentaires/create', [commentaireController::class, 'store']);
+Route::post('/commentaires/update/{id}', [commentaireController::class, 'update']);
+Route::delete('/commentaires/delete/{id}', [commentaireController::class, 'destroy']);
+
+//route commande
+Route::post('/commandes/create', [commandeController::class, 'store']);
+Route::get('commandes/{id}', [commandeController::class, 'index']);
+Route::delete('/commandes/delete/{id}/{user}', [commandeController::class, 'destroy']);
+
+
 

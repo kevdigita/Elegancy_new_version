@@ -10,7 +10,6 @@ class Commentaire extends Model
     use HasFactory;    Protected $fillable=[
         'user_id',
         'actualiter_id',
-   
         'commentaire'
     ];
 }

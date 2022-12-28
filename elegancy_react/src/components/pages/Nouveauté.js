@@ -5,8 +5,29 @@ import Actualiter from "../../data/Actualiter.js";
 
 
 function Nouveaute (){
+<<<<<<< HEAD
+    const CardTissu = cardDataNewTissu.map((items) => {
+        return (
+            <div className=" m-4 w-1/4" key={items.id}>
+                <img src={items.img} alt="sam"  className="bg-stone-300" />
+                <div className="my-3">
+                    <p className="font-medium">{items.name}</p>
+                </div>
+            </div>)
+    });
+=======
  
    
+>>>>>>> 791144b124b8f831493af9b1d23ddd776ceceda3
+    const CardConfection = cardDataConfection.map((items) => {
+        return (
+            <div className=" w-1/4 m-4" key={items.id}>
+                <img src={items.img} alt="sam" className="bg-stone-300" />
+                <div className="my-3">
+                    <p className="font-medium">{items.name}</p>
+                </div>
+            </div>)
+    });
 
     return (<div className=" lg:px-40 mt-40  md:px-10  pb-10">
 <div>

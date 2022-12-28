@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Commentaire;
 use Illuminate\Http\Request;
 
 class commentaireController extends Controller
@@ -11,9 +12,10 @@ class commentaireController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($actualites)
     {
-        //
+        $commentaires = Commentaire::all()->where('actualiter_id', '=', $actualites);
+        return response()->json($commentaires);
     }
 
     /**
@@ -24,7 +26,35 @@ class commentaireController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $commentaires = new Commentaire();
+
+        $request->validate([
+            "actualiter" => "required",
+            "user" => "required",
+            "commentaire" => "required",
+        ]);
+
+        $commentaires->actualiter_id = $request->actualiter;
+        $commentaires->user_id = $request->user;
+        $commentaires->commentaire = $request->commentaire;
+
+        $result = $commentaires->save();
+        if ($result) {
+            return response()->json(
+                [
+                    'success' => 'Votre commentaire a été enregistré avec succès!',
+                    'status' => 200
+                ]
+            );
+        } else {
+            return response()->json(
+
+                [
+                    'success' => 'Une erreur est survenu lors de l\'enregistrement de votre commentaire!',
+                    'status' => 400
+                ]
+            );
+        }
     }
 
     /**
@@ -47,7 +77,18 @@ class commentaireController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $commentaires = Commentaire::find($id);
+
+        $commentaires->actualiter_id = $request->actualiter;
+        $commentaires->user_id = $request->user;
+        $commentaires->commentaire = $request->commentaire;
+        $result = $commentaires->save();
+
+        if($result){
+            return response()->json(['success' => 'Votre commentaire a été modifié avec succès!']);
+        }else{
+            return response()->json(['success' => 'Une erreur est survenu lors de la modification de votre commentaire!']);
+        }
     }
 
     /**
@@ -58,6 +99,13 @@ class commentaireController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $commentaires = Commentaire::find($id);
+        $result = $commentaires->delete();
+
+        if($result){
+            return response()->json(['success' => 'Votre commentaire a été supprimé avec succès!']);
+        }else{
+            return response()->json(['success' => 'Une erreur est survenu lors de la suppression de votre commentaire!']);
+        }
     }
 }
