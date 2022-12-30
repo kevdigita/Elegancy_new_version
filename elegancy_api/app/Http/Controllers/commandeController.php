@@ -14,9 +14,9 @@ class commandeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($user)
+    public function index()
     {
-        $commandes = Commande::all()->where('user_id', '=', $user) ;
+        $commandes = Commande::all()->where('user_id', '=', Auth()->user()->id) ;
         return response()->json(['commandes' => $commandes]);
     }
 

@@ -4,6 +4,7 @@ import Head from './components/head';
 import Footer from './components/footer';
 import Home from './components/pages/homeElegancy';
 import Nouveaute from './components/pages/Nouveauté';
+import Favoris from './components/pages/favoris';
 import Tissue from './components/pages/tissue';
 import Confection from './components/pages/confessions';
 import Apropos from './components/pages/apropos';
@@ -24,6 +25,7 @@ function App() {
       <Route path='/con' element={<Connexion/>}/>
       <Route path='/reg' element={<Register/>}/>
         <Route path='/' element={<Home/>}/>
+        <Route path='/favoris' element={<Favoris/>}/>
         <Route path='/new' element={<Nouveaute/>}/>
         <Route path='/fabric' element={<Tissue/>}/>
         <Route path='/Confection' element={<Confection/>}/>

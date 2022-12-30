@@ -15,7 +15,8 @@ import axios from "axios";
     const [heart,setHeart]=useState('');
    
     const navigate = useNavigate();
-     function logout(){
+
+  function  logout(){
     const config = {
         headers:{
           Authorization : `Bearer ${localStorage.getItem("token")}`
@@ -24,15 +25,41 @@ import axios from "axios";
           axios
             .post(Apiroot._currentValue+'logout', {},config)
             .then((response) => {
-       localStorage.clear()
+       localStorage.removeItem('token')
+       localStorage.removeItem('user.id')
+            
+       localStorage.removeItem('user.solde')
+       localStorage.removeItem('user.ville')
+       localStorage.removeItem('user.parent')
+       localStorage.removeItem('user.epargneur')
+       localStorage.removeItem('user.photo')
+       localStorage.removeItem('user.verified')
+       
+       localStorage.removeItem('user.nom')
+       
+       
+       localStorage.removeItem('user.prenom')
+       
+       localStorage.removeItem('user.role')
+       
+       localStorage.removeItem('user.telephone')
+       
+       
+       localStorage.removeItem('user.email')
+       
+       
+       
         navigate('/new')
       
-          console.log(response)
             })
-         .catch(err =>{})
+         .catch(err =>{
+
+         })
        
       
   }
+
+  
       useEffect(() => {  
         
         var panier= new Array
@@ -53,10 +80,33 @@ import axios from "axios";
         
             setHeart(t)},
 
-                [])
-     
+                [pan])
+          
+                const onChange = () =>{    var panier= new Array
+                  if(localStorage.getItem("panier"))
+                  {
+                          panier = JSON.parse(localStorage.getItem("panier"));
+                  }
+                       var ta=panier.length
+                       
+                   setPan(ta)
+                      var favoris= new Array
+                      if(localStorage.getItem("favoris"))
+                      {
+                         favoris= JSON.parse(localStorage.getItem("favoris"));
+                      }
+                   var   t=favoris.length
+                  
+                  
+                      setHeart(t)}
+          
+                      document.body.addEventListener('click', ()=>onChange());
+                  
+                  
+
+
     return ( 
-        <nav className="flex border justify-between items-center  ">
+        <nav className="flex border justify-between items-center  " >
 {/* menu web */}
             <ul className="lg:flex  xl:ml-20 hidden lg:ml-2   ">
                 < CustomLink to="/new" className=" p-2 m-3 flex items-center   "> Nouveautés  </CustomLink>
@@ -86,9 +136,9 @@ import axios from "axios";
             </ul>
             </div>
             {/* Link du home elegancy */}
-            <Link to="/" className=" text-xl p-1 flex items-center ">
+            <Link to="/" className=" text-xl m-1  flex items-center ">
                 <img src="elegancy/Vector.svg" alt=""></img>
-                <span className="mx-2 font-semibold">  ELEGANCY </span>
+                <span className="mx-0 font-semibold">  ELEGANCY </span>
                 <img src="elegancy/Vector.svg" alt=""></img>
             </Link>
             {/* Link de recherche favorie et panier  */}
@@ -100,7 +150,7 @@ import axios from "axios";
                     </svg>
                 </Link>
                 {/* favoris */}
-                <Link className=" p-2 flex items-center   text-xl md:m-4  ">                <span className="relative inline-block">
+                <Link className=" p-2 flex items-center   text-xl md:m-4  " to="/favoris">                <span className="relative inline-block">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                     </svg><span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-brun rounded-full">{heart}</span>
@@ -112,9 +162,9 @@ import axios from "axios";
                         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
                     </svg><span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-brun rounded-full">{pan}</span>
                </span> </Link>
-                <Menu as="div" className="relative text-left">
+                <Menu as="div" className="text-left">
       <div>
-        <Menu.Button className="inline-flex w-full justify-center  bg-white p-4 font-medium text-gray-700   ">
+        <Menu.Button className="inline-flex w-full justify-center  bg-white p-4 px-1 font-medium text-gray-700   ">
      
           <FiUser className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
         </Menu.Button>
@@ -131,7 +181,7 @@ import axios from "axios";
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            <Menu.Item className={!localStorage.getItem('user.id') ? 'flex p-3' : 'hidden'}>
+            <Menu.Item className={!localStorage.getItem('token') ? 'flex p-3' : 'hidden'}>
               {({ active }) => (
                 <Link
                 to={'/con'}
@@ -146,7 +196,7 @@ import axios from "axios";
               )}
             </Menu.Item>
        
-            <Menu.Item className={!localStorage.getItem('user.id') ? 'flex p-3' : 'hidden'}>
+            <Menu.Item className={!localStorage.getItem('token') ? 'flex p-3' : 'hidden'}>
               {({ active }) => (
                 <Link
                  to={'/reg'}
@@ -158,7 +208,7 @@ import axios from "axios";
                  </Link>
               )}
             </Menu.Item>
-            <Menu.Item className={!localStorage.getItem('user.id') ? 'hidden' : 'flex p-3'}>
+            <Menu.Item className={!localStorage.getItem('token') ? 'hidden' : 'flex p-3'}>
                 {({ active }) => (
                   <Link
                   to={'/con'}
@@ -173,9 +223,9 @@ import axios from "axios";
                   </Link>
                 )}
               </Menu.Item>
-              <Menu.Item className={!localStorage.getItem('user.id')? 'hidden' : 'flex p-3'}>
+              <Menu.Item className={!localStorage.getItem('token')? 'hidden' : 'flex p-3'}>
                 {({ active }) => (
-                  <a onClick={()=>this.logout()}
+                  <a onClick={()=>logout()}
                     type="submit"
                     className={classNames(
                       active ? ' flex text-gray-900' : 'text-gray-700 flex',

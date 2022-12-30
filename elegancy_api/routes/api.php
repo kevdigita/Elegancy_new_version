@@ -43,7 +43,7 @@ Route::delete('Article/{id}',[ArticleController::class,'destroy']);
 //route actualiter
 Route::get('actualites', [ActualiterController::class, 'index']);
 Route::post('/actualite/create', [ActualiterController::class, 'store']);
-Route::get('/actualite/show/{id}', [ActualiterController::class, 'show']);
+Route::get('actualite/show/{id}', [ActualiterController::class, 'show']);
 Route::post('/actualite/update/{id}', [ActualiterController::class, 'update']);
 Route::delete('/actualite/delete/{id}', [ActualiterController::class, 'destroy']);
 
@@ -63,7 +63,7 @@ Route::delete('/commentaires/delete/{id}', [commentaireController::class, 'destr
 
 //route commande
 Route::post('/commandes/create', [commandeController::class, 'store']);
-Route::get('commandes/{id}', [commandeController::class, 'index']);
+Route::get('commandes', [commandeController::class, 'index']);
 Route::delete('/commandes/delete/{id}/{user}', [commandeController::class, 'destroy']);
 
 

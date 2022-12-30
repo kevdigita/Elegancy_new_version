@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Commentaire;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class commentaireController extends Controller
 {
@@ -30,12 +31,11 @@ class commentaireController extends Controller
 
         $request->validate([
             "actualiter" => "required",
-            "user" => "required",
             "commentaire" => "required",
         ]);
 
         $commentaires->actualiter_id = $request->actualiter;
-        $commentaires->user_id = $request->user;
+        $commentaires->user_id = Auth()->user()->id;
         $commentaires->commentaire = $request->commentaire;
 
         $result = $commentaires->save();
@@ -80,7 +80,7 @@ class commentaireController extends Controller
         $commentaires = Commentaire::find($id);
 
         $commentaires->actualiter_id = $request->actualiter;
-        $commentaires->user_id = $request->user;
+        $commentaires->user_id = Auth()->user()->id;
         $commentaires->commentaire = $request->commentaire;
         $result = $commentaires->save();
 

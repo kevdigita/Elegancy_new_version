@@ -8,6 +8,7 @@ export default class TissusList extends React.Component {
     currentPage: 0,
     count: 0,
     offset: 6,
+    margin:0
   }
   componentDidMount() {
     const { type } = this.props
@@ -23,6 +24,8 @@ export default class TissusList extends React.Component {
   }  changePage = n => {
     this.setState({
       currentPage: n
+      
+      
     });
   };
 addfavori(id)
@@ -63,11 +66,16 @@ if(localStorage.getItem("panier"))
   if(panier.includes(id)==false)
   {
  panier.push(id);
- document.activeElement.innerHTML="Retirer du panier"
+ document.activeElement.innerHTML="Retirer du panier"   
+ document.getElementById('b'+id).setAttribute('class',"border-2 border-brun text-brun p-2 px-20 rounded  text-sm mt-2")
+ 
 }
 else{
  panier = panier.filter(function(f) { return f !== id })
    document.activeElement.innerHTML="Ajouter au panier"
+    
+ document.getElementById('b'+id).setAttribute('class'," border-2 border-brun bg-brun p-2 px-2 rounded text-white text-sm mt-2")
+
 }
 
 
@@ -99,14 +107,17 @@ else{
             <>
         {Tissus.length && Tissus.slice(start,end).map(item =>
                <div className=" text-stone-600" key={item.id}>
+                <div className='w-60'>
+                  
+               
             {item.type == 'photo' &&
-               <img width="300" src={"http://127.0.0.1:8000/" + item.media} alt=""></img>}
+               <img className='w-full'  src={"http://127.0.0.1:8000/" + item.media} alt=""></img>}
            {item.type == 'video' &&
-               <video width="300" controls >
+               <video className='w-full' controls >
                    <source src={"http://127.0.0.1:8000/" + item.media} type="video/mp4" />
                    <source src={"http://127.0.0.1:8000/" + item.media} type="video/ogg" />
                    Your browser does not support HTML video.
-               </video>}
+               </video>} </div>
                <div className="my-3">
                    <p className="">{item.nom}</p>
                    <p className="flex   my-1 space-x-32 ">
@@ -118,9 +129,10 @@ else{
                    </p>
                </div>
                {!panier.find(element => element === item.id)  ?
-               <button onClick={()=>this.addpanier(item.id) } className="bg-brun p-2 px-2 rounded text-white text-sm mt-2"> Ajouter au panier</button>
-          :  <button onClick={()=>this.addpanier(item.id) } className="bg-brun p-2 px-20 rounded text-white text-sm mt-2"> Retirer du panier</button>
+               <button id={'b'+item.id}  onClick={()=>this.addpanier(item.id) } className="border-2 border-brun bg-brun p-2 px-2 rounded text-white text-sm mt-2"> Ajouter au panier</button>
+          :  <button id={'b'+item.id}  onClick={()=>this.addpanier(item.id) } className="border-2 border-brun text-brun p-2 px-20 rounded  text-sm mt-2" > Retirer du panier</button>
         } </div> )}
+         <br/>
                 <Pagination
                 pages={Math.ceil(count / offset)}
                 current={currentPage}
