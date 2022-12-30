@@ -6,16 +6,35 @@ import { FiUser,FiUserPlus,FiUserX} from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { Apiroot } from "..";
 import axios from "axios";
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
  function Head (){ 
     const [nav,setNav]=useState(false);
     const menu =()=>{setNav(!nav)};
-
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
     const [pan,setPan]=useState('');
     
     const [heart,setHeart]=useState('');
    
     const navigate = useNavigate();
 
+    const style = {
+      position: 'absolute' ,
+      top: '30%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: '100%',
+      bgcolor: 'background.paper',
+     
+      boxShadow: 24,
+      p: 4,
+    };
+    
+    
   function  logout(){
     const config = {
         headers:{
@@ -115,6 +134,29 @@ import axios from "axios";
                 < CustomLink to="/about" className=" p-2 m-3 flex items-center  "> A propos  </CustomLink>
             </ul>
             {/* icone de menu mobile  */}
+<Modal
+  open={open}
+  onClose={handleClose}
+  aria-labelledby="modal-modal-title"
+  aria-describedby="modal-modal-description"
+>
+  <Box sx={style}
+  className=' border-brun border-2'>
+  <div className="flex justify-center">
+  <div className="mb-3 xl:w-96">
+    <div className="input-group relative flex flex-wrap items-stretch w-full mb-4">
+    
+      <input type="search" class="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-brun focus:outline-none" placeholder="Search" aria-label="Search" aria-describedby="button-addon2"/>
+      <button className="btn inline-block px-6 py-2.5 bg-brun text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:gray-300  hover:shadow-lg focus:bg-gray-400  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-300 active:shadow-lg transition duration-150 ease-in-out flex items-center" type="button" id="button-addon2">
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="w-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+  </Box>
+</Modal>
             <Link onClick={menu} className=" lg:hidden p-2 m-4  items-center z-10">
                 {
                     !nav ?
@@ -144,7 +186,7 @@ import axios from "axios";
             {/* Link de recherche favorie et panier  */}
                 <div className="flex lg:mx-20 xl:mx-40 ">
                     {/* recherche */}
-                    <Link  className=" p-2  flex items-center   text-xl md:m-4 ">
+                    <Link  className=" p-2  flex items-center   text-xl md:m-4 " onClick={handleOpen}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                     </svg>

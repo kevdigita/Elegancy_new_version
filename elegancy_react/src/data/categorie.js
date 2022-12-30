@@ -37,7 +37,7 @@ const {type}= this.props
         return ( 
             this.state.cat.map(item =>
 
-        <a href="">    <button className="m-4 z-40"> {item.nom}</button>   </a>   )
+        <a href="">    <button className="md:m-4 z-40 sm:m-1"> {item.nom}</button>   </a>   )
               
     )
                
