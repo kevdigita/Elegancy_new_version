@@ -32,6 +32,10 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    
+ 
+
+
     <div id="root"></div>
     <!--
       This HTML file is a template.
@@ -43,5 +47,25 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script src="https://cdn.fedapay.com/checkout.js?v=1.1.7"></script>
+    <button id="pay-btn"
+    data-transaction-amount="5000"
+    data-transaction-description="Buy my product"
+    data-customer-email="johndoe@gmail.com"
+    data-customer-lastname="Doe"
+    data-customer-firstname="john"
+hidden="true"
+    onClick='gopay()'
+    >Pay </button>
+      <script> 
+       function gopay()
+        {
+      FedaPay.init('#pay-btn', { public_key: 'pk_live_WcT0L2dQIe8ZsyqZJyCz0UGM', });
+        }
+    
+     
+     </script>
+
+    
   </body>
 </html>

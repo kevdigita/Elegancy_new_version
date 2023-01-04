@@ -6,7 +6,10 @@ import Home from './components/pages/homeElegancy';
 import Nouveaute from './components/pages/Nouveauté';
 import Favoris from './components/pages/favoris';
 import Tissue from './components/pages/tissue';
+import Search from './components/pages/search';
 import Confection from './components/pages/confessions';
+import Profil from './components/pages/profile';
+import Panier from './components/pages/commande';
 import Apropos from './components/pages/apropos';
 import Register from './authentification/Register';
  import Connexion from './authentification/Connexion';
@@ -22,14 +25,17 @@ function App() {
         <Head/>
       <div> 
       <Routes>
+        <Route path='/' element={<Home/>}/>
       <Route path='/con' element={<Connexion/>}/>
       <Route path='/reg' element={<Register/>}/>
-        <Route path='/' element={<Home/>}/>
+        <Route path='/search' element={<Search/>}/>
         <Route path='/favoris' element={<Favoris/>}/>
         <Route path='/new' element={<Nouveaute/>}/>
         <Route path='/fabric' element={<Tissue/>}/>
         <Route path='/Confection' element={<Confection/>}/>
         <Route path='/about' element={<Apropos/>}/>
+        <Route path='/profile' element={<Profil/>}/>
+        <Route path='/panier' element={<Panier/>}/>
       </Routes>
       </div>
       <Footer/></div>

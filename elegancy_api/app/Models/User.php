@@ -72,6 +72,10 @@ class User extends Authenticatable
         {
             $filname = $request->photo;
         }
+        if($request->parent)
+        {
+            $this->parent = $request->parent;
+        }
         $this->ville = $request->ville;
         $this->photo = $filname;
         $this->prenom = $request->prenom;

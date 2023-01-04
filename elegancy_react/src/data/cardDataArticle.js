@@ -10,9 +10,13 @@ export default class TissusList extends React.Component {
     offset: 6,
     margin:0
   }
+
   componentDidMount() {
     const { type } = this.props
-     
+    
+    
+    
+   
     axios.get(Apiroot._currentValue+'articlecat/'+type)
       .then(res => {
         console.log(res)
@@ -28,6 +32,7 @@ export default class TissusList extends React.Component {
       
     });
   };
+ 
 addfavori(id)
 {
   var favoris= new Array
@@ -104,10 +109,13 @@ else{
       }
 
         return ( 
-            <>
+            <>  
+ 
+
         {Tissus.length && Tissus.slice(start,end).map(item =>
                <div className=" text-stone-600" key={item.id}>
                 <div className='w-60'>
+ 
                   
                
             {item.type == 'photo' &&

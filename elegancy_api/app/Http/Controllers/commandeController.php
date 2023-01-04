@@ -31,14 +31,13 @@ class commandeController extends Controller
         $commandes = new Commande();
 
         $request->validate([
-            'user' => "required",
             'article' => "required",
             "qte" => "required",
         ]);
 
         $pu = Article::find($request->article);
 
-        $commandes->user_id = $request->user;
+        $commandes->user_id = Auth()->user()->id;
         $commandes->article_id = $request->article;
         $commandes->qte = $request->qte;
         $commandes->montant = (($pu->prix) * ($request->qte));
@@ -48,7 +47,8 @@ class commandeController extends Controller
             return response()->json(
                 [
                     'success' => 'Votre commande a été enregistré avec succès!',
-                    'status' => 200
+                    'status' => 200,
+                    'article'=>$request->article
                 ]
             );
         } else {

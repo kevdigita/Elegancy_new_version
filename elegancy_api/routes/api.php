@@ -25,18 +25,29 @@ Route::post('register',[UserController::class,'register']);
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::post('logout', [UserController::class, 'logout']);
-});
+//route commentaire
+Route::get('commentaires/{id}', [commentaireController::class, 'index']);
+Route::post('/commentaires/create', [commentaireController::class, 'store']);
+Route::post('/commentaires/update/{id}', [commentaireController::class, 'update']);
+Route::delete('/commentaires/delete/{id}', [commentaireController::class, 'destroy']);
+
+//route commande
+Route::post('commandes/create', [commandeController::class, 'store']);
+Route::get('commandes', [commandeController::class, 'index']);
+Route::delete('/commandes/delete/{id}/{user}', [commandeController::class, 'destroy']);
+
 
 //route user
 Route::get('user',[UserController::class,'index']);
 Route::get('user/{id}',[UserController::class,'show']);
 Route::put('user/{id}',[UserController::class,'update']);
-
+});
 //route article
 Route::get('articlecat/{type}',[ArticleController::class,'getarticle']);
 Route::get('articles',[ArticleController::class,'index']);
 Route::post('articles/create',[ArticleController::class,'store']);
 Route::get('articles/show/{id}',[ArticleController::class,'show']);
+Route::get('articles/search/{id}',[ArticleController::class,'search']);
 Route::post('articles/update/{id}',[ArticleController::class,'update']);
 Route::delete('Article/{id}',[ArticleController::class,'destroy']);
 
@@ -55,16 +66,6 @@ Route::get('/categorie/show/{id}', [categorieController::class, 'show']);
 Route::post('/categorie/update/{id}', [categorieController::class, 'update']);
 Route::delete('/categorie/delete/{id}', [categorieController::class, 'destroy']);
 
-//route commentaire
-Route::get('commentaires/{id}', [commentaireController::class, 'index']);
-Route::post('/commentaires/create', [commentaireController::class, 'store']);
-Route::post('/commentaires/update/{id}', [commentaireController::class, 'update']);
-Route::delete('/commentaires/delete/{id}', [commentaireController::class, 'destroy']);
-
-//route commande
-Route::post('/commandes/create', [commandeController::class, 'store']);
-Route::get('commandes', [commandeController::class, 'index']);
-Route::delete('/commandes/delete/{id}/{user}', [commandeController::class, 'destroy']);
 
 
 

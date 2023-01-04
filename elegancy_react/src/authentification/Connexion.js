@@ -29,7 +29,9 @@ function Connexion(props) {
     }
 
      async function handleSubmit(e){ 
+    document.getElementById('loading').hidden=false
         e.preventDefault()
+    
         axios
         .post(Apiroot._currentValue+'login', {
           email: email,
@@ -63,25 +65,30 @@ function Connexion(props) {
             localStorage.setItem('token',response.data.data.token)
             
 
+            document.getElementById('loading').setAttribute('hidden','true')
             navigate('/new')
         })
-    .catch ((error)  =>{
+    .catch (error =>{
+       
+            setErrMsg("erreur email ou mot de passe incorrect ")
+        
+   
+            document.getElementById('loading').setAttribute('hidden','true')
     
-         setErrMsg("erreur d'inscription")
      
 
-    })
+    }) 
 }
     
     return (
         <div className="flex  ">
             <div className="h-screen lg:flex hidden relative  ">
-                <img src="Rectangle 52.png" className="h-screen w-[100vh]" alt=""></img>
+                <img src="IMG_0108.JPG" className="h-screen w-[100vh]" alt=""></img>
             </div>
             <div className=" flex   mx-auto my-auto  ">
             
             <main className="   text-left    ">
-                    <p ref = {errRef} className="flex items-center justify-center text-red-400 text-center" style={{ display: errMsg ?"" :"none" }}></p>
+                    <p ref = {errRef} className="flex items-center justify-center text-red-400 text-center" style={{ display: errMsg ?"" :"none" }}>{errMsg}</p>
                     <h1 className=" font-medium text-2xl my-3  w-[80%] pb-3 "> Connectez-vous </h1>
             <button type="submit"  className="border-4  my-4 px-20 p-2 text-text bg-white  w-[100%] rounded-md flex justify-center " > <img className="w-4  mx-2 mt-1" src="images 1.png" alt=""/> <span>Se connecter avec Google   </span></button>
             
@@ -117,7 +124,11 @@ function Connexion(props) {
                                 {eyeState ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}</button>
                         </div>
                         <p className="text-sm text-brun font-normal text-right my-2"> Mot de pass oublié ?  </p>
-                        <button type="submit"  className="border  my-3 px-20 p-2 text-white bg-black  w-[100%] rounded-md" >Se Connectez</button>
+                        <button type="submit"  className="border  my-3 px-20 p-2 text-white bg-black  w-[100%] rounded-md" >Se Connectez  
+                         <span id='loading'hidden='true'  >      
+                            <svg class="spinner -ml-1 mr-2 h-5 w-5"  viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+   <circle class="path" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+</svg></span> </button>
                         </form>
                    <p className="text-center m-5">
                         Vous n'avez pas de  compte ?

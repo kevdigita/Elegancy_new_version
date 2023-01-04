@@ -11,11 +11,22 @@ export default class TissusList extends React.Component {
     margin:0
   }
   componentDidMount() {
-    if(localStorage.getItem("favoris"))
+
+    
+    const { type } = this.props
+    if(localStorage.getItem(type))
     {
-   var favoris = JSON.parse(localStorage.getItem("favoris"))
-    axios.get(Apiroot._currentValue+'articles/show/'+favoris)
-      .then(res => {
+   var val
+   if(type==="favoris")
+   {
+   var favoris = JSON.parse(localStorage.getItem(type)) 
+   val =axios.get(Apiroot._currentValue+'articles/show/'+favoris)
+}else
+{
+  val =axios.get(Apiroot._currentValue+'articles/search/'+localStorage.getItem(type))
+}
+   
+     val.then(res => {
         console.log(res)
         this.setState({
         Tissus :  res.data.article,

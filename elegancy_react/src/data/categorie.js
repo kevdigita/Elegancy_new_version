@@ -32,7 +32,6 @@ const {type}= this.props
    
   
 
-    const {type,Pat}= this.props
     
         return ( 
             this.state.cat.map(item =>

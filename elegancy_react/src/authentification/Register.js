@@ -4,7 +4,7 @@ import axios from "axios";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import 'react-phone-number-input/style.css';
 import PhoneInput from "react-phone-number-input";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import { Apiroot } from "..";
 
 const USER_REGEX = /^\S+@\S+$/
@@ -73,6 +73,22 @@ function Register() {
         setEyeState(prevState => !prevState);
     }
 
+function verif()
+{
+
+if(!validEmail ||  !validPwd || !validMatch)
+{
+    setpage(1)
+}
+else if(!nom || !prenom || !sexe)
+{
+    setpage(2)
+}
+else{
+    setpage(3)
+}
+}
+
 
 
 async  function handleSubmit(e){
@@ -85,6 +101,8 @@ async  function handleSubmit(e){
     }
     
     try {
+        
+    document.getElementById('loading').hidden=false
 let ph
         if(sexe=='M')
         {
@@ -137,11 +155,21 @@ console.log(response)
             localStorage.setItem('token',response.data.data.token)
             
    
+            document.getElementById('loading').hidden=true
     navigate('/new')
         })
+        .catch(error=>{
+    
+            setErrMsg("erreur d'inscription email existe deja ")
+        
+    document.getElementById('loading').hidden=true
+   
+       })
     } catch (error) {
     
          setErrMsg("erreur d'inscription")
+         
+    document.getElementById('loading').hidden=true
      
 
     }
@@ -151,7 +179,7 @@ console.log(response)
     return (
         <div className="flex">
             <div className="h-screen lg:flex hidden relative ">
-                <img src="Rectangle 52.png" className="h-screen w-[100vh]" alt=""></img>
+                <img src="IMG_0109.JPG" className="h-screen w-[100vh]" alt=""></img>
             </div>
             <div className=" flex   mx-auto my-auto ">
                 <main className="   text-left   ">
@@ -340,12 +368,18 @@ console.log(response)
     
 </div>
 
-                        <button type="submit" disabled={!validEmail || !validPwd || !validMatch || !nom || !prenom || !sexe || !ville ?true :false} className={page==3 ? "border  m-3 px-20 p-2 text-white bg-black  w-[100%] rounded-md" :'hidden'  } > Creer un compte </button>
+                        <button type="submit" onClick={()=>verif()} className={ "border  m-3 px-20 p-2 text-white bg-black  w-[100%] rounded-md"  } > Creer un compte 
+                        
+                        <span id='loading'hidden='true'  >      
+                            <svg class="spinner -ml-1 mr-2 h-5 w-5"  viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+   <circle class="path" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+</svg></span>
+                        </button>
                     </form>
                         <button type="submit" disabled={!validEmail || !validPwd || !validMatch ? true :false} className="border-4  m-3 px-20 p-2 text-text bg-white  w-[100%] rounded-md flex justify-center " > <img className="w-4  mx-2 mt-1" src="images 1.png" alt=""/> <span>S'inscrire avec Google   </span></button>
                     <p className="text-center ">
                         Vous avez deja un compte ?
-                     <a className="text-brun pl-5 " href="/reg"  > Connectez vous  </a>
+                     <Link className="text-brun pl-5 " href="/reg"  > Connectez vous  </Link>
                     </p>
                      
                 </main>

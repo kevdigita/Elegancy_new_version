@@ -12,8 +12,8 @@ function Home() {
 
             <button className="bg-brun m-8 rounded-lg px-10 text-white text-md font-medium p-2"> Voir nos confections </button>
         </div>   
-        <div className="">
-            <img src="elegancy/Group4.svg" alt="" className="" ></img>
+        <div className="w-96  m-auto mt-5">
+            <img src="IMG_0037.JPG" alt="" className="" ></img>
             </div>  
 
             </div>
@@ -33,7 +33,7 @@ wax</p>
 <button className="p-2 border-4 border-brun text-stone-500 text-xl rounded-lg mt-12 px-6">Acheter  maintenant</button>
             </div>
 
-            <img src ="elegancy/Group6.svg" alt=""></img>
+            <img src ="IMG_0043.JPG" className="w-96  m-auto mt-5 ml-16 " alt=""></img>
 </div>
             
     </div>);

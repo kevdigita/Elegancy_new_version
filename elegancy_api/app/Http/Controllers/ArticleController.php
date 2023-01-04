@@ -118,6 +118,16 @@ class ArticleController extends Controller
             return response()->json(['article' => $article]);
         }
     }
+    public function search( $id){
+            $article = Article::Where('nom',"like","%".$id."%")->orwhere('description',"like","%".$id."%")
+            ->orwhere('prix',"like","%".$id."%")->get();
+    
+            if (!$article) {
+                return response()->json(['success' => 'Article non trouvé!']);
+            }else{
+                return response()->json(['article' => $article]);
+            }
+        }
 
     /**
      * Show the form for editing the specified resource.

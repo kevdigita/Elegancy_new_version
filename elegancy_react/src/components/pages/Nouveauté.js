@@ -11,7 +11,7 @@ function Nouveaute (){
     return (<div className=" lg:px-40 mt-40  md:px-10  pb-10">
 <div>
 <img src="elegancy/Ellipse6.svg" alt="" className=" absolute  left-[] "></img>
-        <img src="elegancy/new.svg" alt="newpicture1" className="  absolute right-5 top-40  sm:w-44  md:w-96 "></img>
+        <img src="IMG_0039.JPG" alt="newpicture1" className="  absolute right-5 top-40  md:w-96  w-60"></img>
         <h1 className=" text-4xl md:text-8xl font-light relative top-20 left-40 w-1/2  "> DECOUVREZ </h1>
         <h1 className="text-4xl md:text-8xl text-center relative  font-light  mt-10"><br />NOS</h1>
         <h1 className="text-4xl md:text-8xl text-center relative font-light  mt-10">NOUVEAUTÉS</h1>

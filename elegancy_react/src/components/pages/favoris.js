@@ -8,7 +8,7 @@ function  Favori (){
         <h1 className="text-4xl text-semibold"> Mes Favoris</h1>
        
         <section className="grid lg:grid-cols-3 gap-10 my-4">
-            <Favoris /> 
+            <Favoris type='favoris' /> 
             
             </section>
        

@@ -7,8 +7,6 @@ import { useDispatch } from "react-redux";
 import { Apiroot } from "..";
 import axios from "axios";
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
  function Head (){ 
     const [nav,setNav]=useState(false);
@@ -19,19 +17,19 @@ import Modal from '@mui/material/Modal';
     const [pan,setPan]=useState('');
     
     const [heart,setHeart]=useState('');
-   
+    const [searchTerm, setSearchTerm] = useState("");
+    const handleChange = event => {
+      setSearchTerm(event.target.value);
+      localStorage.setItem('search',event.target.value)
+    };
     const navigate = useNavigate();
 
     const style = {
       position: 'absolute' ,
       top: '30%',
       left: '50%',
-      transform: 'translate(-50%, -50%)',
-      width: '100%',
-      bgcolor: 'background.paper',
-     
-      boxShadow: 24,
-      p: 4,
+      transform: 'translate(-50%, -50%)'
+      
     };
     
     
@@ -141,17 +139,20 @@ import Modal from '@mui/material/Modal';
   aria-describedby="modal-modal-description"
 >
   <Box sx={style}
-  className=' border-brun border-2'>
+  className=' w-full '>
   <div className="flex justify-center">
-  <div className="mb-3 xl:w-96">
-    <div className="input-group relative flex flex-wrap items-stretch w-full mb-4">
+  <div className=" xl:w-96">
+    <div className="input-group relative flex flex-wrap items-stretch w-full ">
     
-      <input type="search" class="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-brun focus:outline-none" placeholder="Search" aria-label="Search" aria-describedby="button-addon2"/>
-      <button className="btn inline-block px-6 py-2.5 bg-brun text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:gray-300  hover:shadow-lg focus:bg-gray-400  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-300 active:shadow-lg transition duration-150 ease-in-out flex items-center" type="button" id="button-addon2">
+      <input type="search" 
+      value={searchTerm}
+      onChange={handleChange}
+      class="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-brun focus:outline-none" placeholder="Search" aria-label="Search" aria-describedby="button-addon2"/>
+      <a href="/search" className="btn inline-block px-6 py-2.5 bg-brun text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:gray-300  hover:shadow-lg focus:bg-gray-400  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-300 active:shadow-lg transition duration-150 ease-in-out flex items-center" type="button" id="button-addon2">
         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="w-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
           <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
         </svg>
-      </button>
+      </a>
     </div>
   </div>
 </div>
@@ -195,20 +196,20 @@ import Modal from '@mui/material/Modal';
                 <Link className=" p-2 flex items-center   text-xl md:m-4  " to="/favoris">                <span className="relative inline-block">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                    </svg><span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-brun rounded-full">{heart}</span>
+                    </svg><span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-brun rounded-full">{heart}</span>
                     </span>  </Link>  
                 {/* panier  */}
-                <Link className=" p-1  flex items-center   text-xl md:m-4  ">
+                <Link  to="/panier" className=" p-1  flex items-center   text-xl md:m-4  ">
                 <span className="relative inline-block">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                    </svg><span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-brun rounded-full">{pan}</span>
+                    </svg><span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-brun rounded-full">{pan}</span>
                </span> </Link>
                 <Menu as="div" className="text-left">
       <div>
         <Menu.Button className="inline-flex w-full justify-center  bg-white p-4 px-1 font-medium text-gray-700   ">
      
-          <FiUser className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+          <FiUser className="mt-2 ml-2 h-5 w-5" aria-hidden="true" />
         </Menu.Button>
       </div>
 
@@ -253,7 +254,7 @@ import Modal from '@mui/material/Modal';
             <Menu.Item className={!localStorage.getItem('token') ? 'hidden' : 'flex p-3'}>
                 {({ active }) => (
                   <Link
-                  to={'/con'}
+                  to={'/profile'}
                     type="submit"
                     className={classNames(
                       active ? ' flex text-gray-900' : 'text-gray-700 flex',
