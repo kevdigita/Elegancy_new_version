@@ -10,6 +10,7 @@ import Search from './components/pages/search';
 import Confection from './components/pages/confessions';
 import Profil from './components/pages/profile';
 import Panier from './components/pages/commande';
+import Mescom from './components/pages/mescom';
 import Apropos from './components/pages/apropos';
 import Register from './authentification/Register';
  import Connexion from './authentification/Connexion';
@@ -36,6 +37,8 @@ function App() {
         <Route path='/about' element={<Apropos/>}/>
         <Route path='/profile' element={<Profil/>}/>
         <Route path='/panier' element={<Panier/>}/>
+        
+        <Route path='/mescom' element={<Mescom/>}/>
       </Routes>
       </div>
       <Footer/></div>

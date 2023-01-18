@@ -16,7 +16,11 @@ class commandeController extends Controller
      */
     public function index()
     {
-        $commandes = Commande::all()->where('user_id', '=', Auth()->user()->id) ;
+        $commandes = Commande::where('user_id', '=', Auth()->user()->id)
+            ->join("articles", 'commandes.article_id', '=', "articles.id")
+            ->select('*','commandes.id as uid')
+            ->get();
+        
         return response()->json(['commandes' => $commandes]);
     }
 

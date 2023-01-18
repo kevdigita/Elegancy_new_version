@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import axios from "axios";
 import { Apiroot } from "../..";
+import { Link } from "react-router-dom";
 function Commande() {
   
   const [liv,setLiv]=useState(500);
@@ -295,7 +296,12 @@ console.log(response)
     }
   }
 
-  return <TissusList />;
+  return(<div>
+    <Link to='/mescom' className="p-1 bg-brun  rounded   text-white text-sm px-16  m-4 ">
+      Mes commandes
+  </Link>
+   <TissusList />
+  </div>) 
 }
 
 export default Commande;
